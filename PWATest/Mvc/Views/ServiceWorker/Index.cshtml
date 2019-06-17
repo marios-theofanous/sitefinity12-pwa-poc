@@ -1,0 +1,17 @@
+﻿<script>
+    if ('serviceWorker' in navigator) {
+
+        Notification.requestPermission(function (status) {
+            console.log('Notification permission status:', status);
+        });
+
+        console.trace("Registering service workers")
+        navigator.serviceWorker
+            .register('/sw-prod.js') // To get sw-prod.js run "workbox injectManifest workbox-options.js" to generate it from the sw-dev.js file
+            .then(function () {
+                console.trace("Service workers registered");
+            })
+    } else {
+        console.warn("This browser does not support service workers. Offline functionality will be disabled.")
+    }
+</script>
